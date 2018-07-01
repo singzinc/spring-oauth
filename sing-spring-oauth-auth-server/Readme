@@ -1,0 +1,21 @@
+
+# ----------------------------- get the token -------------------------
+curl -XPOST -k test1:test1secret@localhost:9000/authServer/oauth/token \
+   -d grant_type=password -d client_id=test1 -d client_secret=test1secret \
+   -d redirect_uri=http://localhost:9000 -d username=agentx -d password=agentsecretx
+
+curl -XPOST -k test2:test2secret@localhost:9000/authServer/oauth/token \
+   -d grant_type=password -d client_id=test2 -d client_secret=test2secret \
+   -d redirect_uri=http://localhost:9000 -d username=agentx -d password=agentsecretx
+
+# --------------------------------  refresh ------------------------- 
+curl -XPOST -k test1:test1secret@localhost:9000/authServer/oauth/token \
+   -d grant_type=refresh_token -d refresh_token=c70eb5a0-3770-475c-b0f2-eb40b1cf87e6
+
+# -------------------------------- check token -----------------------
+curl -X POST -k test1:test1secret@localhost:9000/authServer/oauth/check_token -d "token=f2579111-a96d-4da1-9e02-9edf4e7241fc"
+
+
+
+curl -H "Authorization: Bearer [base64encode(clientId:clientSecret)]" "https://yourdomain.com/oauth/token?grant_type=refresh_token&refresh_token=8d930ed3-1e41-4ae8-88b7-ba4c6b3dcd56"
+
